@@ -1,5 +1,5 @@
 
-
+const callHistory = [];
 // heart icon functionalities
 const heartBtns = document.getElementsByClassName("heart");
 
@@ -41,7 +41,32 @@ for (const callBtn of callBtns) {
          const coinBtnMinus = coinValue - 20;
          coinBtn.innerText = coinBtnMinus;
          alert(importantText + " " + importantNumber)
-         return coinBtnMinus;
+
+
+        // call history and time check function 
+         const data = {
+         name:importantText + " " + importantNumber,
+         date:new Date().toLocaleTimeString()
+        }
+
+       callHistory.push(data)
+    
+
+        
+      const callBtnContainer = document.getElementById("call-btn-parent")
+      const div =document.createElement("div") 
+      div.innerHTML= `
+          <div class="flex justify-between items-center pl-5 pr-5">
+                            <div>
+                                <h3 class="text-black font-semibold">${data.name}</h3>
+                                
+                            </div>
+                            <div>
+                               <p class="text-gray-500">${data.date}</p>
+                            </div>
+                        </div>
+      `
+      callBtnContainer.appendChild(div)
 
       }
       else {
@@ -49,6 +74,17 @@ for (const callBtn of callBtns) {
       }
    })
 }
+
+document.getElementById('clear-btn').addEventListener('click',function(){
+
+   callHistory.length = 0
+       
+   const callBtnContainer = document.getElementById("call-btn-parent")
+     callBtnContainer.innerHTML="";
+     
+})
+
+
 
 
 
