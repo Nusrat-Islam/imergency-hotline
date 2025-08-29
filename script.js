@@ -19,10 +19,10 @@ for (const heartBtn of heartBtns) {
    btn.addEventListener('click', function(){
    const twoNumber = document.getElementById('two-number')
    let twoNumberCount = parseInt(twoNumber.innerText)
-    twoNumberCount++;
+   twoNumberCount++;
    twoNumber.innerText= twoNumberCount;
 
-    const importantNumber = document.querySelector('.important-number').innerText;
+    const importantNumber = btn.parentNode.parentNode.children[2].children[0].innerText
       navigator.clipboard.writeText(importantNumber)
        alert('The Number is copied ' + importantNumber)
            
