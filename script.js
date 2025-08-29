@@ -13,6 +13,26 @@ for (const heartBtn of heartBtns) {
    })
 }
 
+// Copy button
+ const copyBtns = document.getElementsByClassName('copy-btn');
+ for(const btn of copyBtns)
+   btn.addEventListener('click', function(){
+   const twoNumber = document.getElementById('two-number')
+   let twoNumberCount = parseInt(twoNumber.innerText)
+    twoNumberCount++;
+   twoNumber.innerText= twoNumberCount;
+
+    const importantNumber = document.querySelector('.important-number').innerText;
+      navigator.clipboard.writeText(importantNumber)
+       alert('The Number is copied ' + importantNumber)
+           
+     //twoNumber.innerText= twoNumberCount;
+   
+    
+   })
+ 
+
+
 
 
 //get input value number
@@ -35,9 +55,9 @@ for (const callBtn of callBtns) {
 
 
       if (coinValue >= 20) {
-         const importantText = callBtn.parentNode.parentNode.children[1].children[1].innerText;
+         const importantText = callBtn.parentNode.parentNode.children[1].children[0].innerText;
          const importantNumber = callBtn.parentNode.parentNode.children[2].children[0].innerText;
-
+        
          const coinBtnMinus = coinValue - 20;
          coinBtn.innerText = coinBtnMinus;
          alert(importantText + " " + importantNumber)
@@ -45,7 +65,8 @@ for (const callBtn of callBtns) {
 
         // call history and time check function 
          const data = {
-         name:importantText + " " + importantNumber,
+         name:importantText,
+         number:importantNumber,
          date:new Date().toLocaleTimeString()
         }
 
@@ -55,11 +76,12 @@ for (const callBtn of callBtns) {
         
       const callBtnContainer = document.getElementById("call-btn-parent")
       const div =document.createElement("div") 
+     
       div.innerHTML= `
-          <div class="flex justify-between items-center pl-5 pr-5">
+          <div class="flex justify-between items-center pl-5 pr-5 shadow-sm rounded-lg mt-5">
                             <div>
                                 <h3 class="text-black font-semibold">${data.name}</h3>
-                                
+                                <p class="text-gray-500">${data.number} </p>
                             </div>
                             <div>
                                <p class="text-gray-500">${data.date}</p>
